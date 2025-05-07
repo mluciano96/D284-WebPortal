@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AVGC Contact Form</title>
+    <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+    <div class="header">American Video Game Company</div>
+    <div class="subheader">Contact Management</div>
+    
+    <div class="container form-container">
+        <h2>Contact Form</h2>
+        <form action="confirmation.html">
+            <div class="form-group">
+                <label class="required" for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label class="required" for="phone">Phone Number</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title">
+            </div>
+            
+            <div class="form-group">
+                <label for="request">Request</label>
+                <textarea id="request" name="request" rows="4"></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        
+        <div class="nav-back">
+            <a href="index.html">← Back to Main Page</a>
+        </div>
+    </div>
+</body>
+</html>
