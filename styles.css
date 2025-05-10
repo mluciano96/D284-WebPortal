@@ -134,3 +134,71 @@ input, textarea {
 .redirect-message {
     color: #666;
 }
+
+/* Contact Management page styles */
+.container.contact-container {
+    max-width: 1000px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.contact-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+}
+
+.contact-table th {
+    background-color: #003366;
+    color: white;
+    text-align: left;
+    padding: 10px;
+}
+
+.contact-table td {
+    border-bottom: 1px solid #ddd;
+    padding: 10px;
+}
+
+.contact-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.contact-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.contact-form h3 {
+    margin-top: 0;
+    color: #003366;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.form-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.section-header {
+    color: #003366;
+    border-bottom: 2px solid #003366;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
