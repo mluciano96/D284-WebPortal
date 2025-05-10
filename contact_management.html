@@ -1,62 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Company Website - Contact Management</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <script>
+        // Function to add action buttons to a row
+        function addActionButtons(row) {
+            const actionCell = row.insertCell(-1); // Add cell to the end
+            actionCell.innerHTML = `
+                <button onclick="softDeleteRow(this)">Soft Delete</button>
+                <button onclick="hardDeleteRow(this)">Hard Delete</button>
+            `;
+        }
+
+        // Soft delete (no confirmation)
+        function softDeleteRow(button) {
+            const row = button.closest('tr');
+            row.remove();
+        }
+
+        // Hard delete (asks for credential)
+        function hardDeleteRow(button) {
+            const password = prompt("Enter credentials to delete this contact:");
+            if (password === "1234") {
+                const row = button.closest('tr');
+                row.remove();
+            } else {
+                alert("Incorrect credentials. Deletion cancelled.");
+            }
+        }
+
         // Function to add a new contact to the table
         function addContact(event) {
             event.preventDefault();
-            
+
             // Get form values
             const name = document.getElementById('name').value;
             const email = document.getElementById('email').value;
             const phone = document.getElementById('phone').value;
             const department = document.getElementById('department').value;
-            
+
             // Validate form
             if (!name || !email || !phone || !department) {
                 alert('Please fill in all fields');
                 return;
             }
-            
+
             // Create new table row
             const table = document.getElementById('contactTable').getElementsByTagName('tbody')[0];
             const newRow = table.insertRow();
-            
+
             // Insert cells with data
-            const nameCell = newRow.insertCell(0);
-            const emailCell = newRow.insertCell(1);
-            const phoneCell = newRow.insertCell(2);
-            const deptCell = newRow.insertCell(3);
-            
-            nameCell.textContent = name;
-            emailCell.textContent = email;
-            phoneCell.textContent = phone;
-            deptCell.textContent = department;
-            
+            newRow.insertCell(0).textContent = name;
+            newRow.insertCell(1).textContent = email;
+            newRow.insertCell(2).textContent = phone;
+            newRow.insertCell(3).textContent = department;
+
+            // Add action buttons
+            addActionButtons(newRow);
+
             // Clear form
             document.getElementById('contactForm').reset();
-            
-            // Show success message
+
             alert('Contact added successfully!');
         }
-        
-        // Add event listener when DOM is loaded
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('contactForm').addEventListener('submit', addContact);
+
+            // Add buttons to existing rows
+            const rows = document.querySelectorAll('#contactTable tbody tr');
+            rows.forEach(row => addActionButtons(row));
         });
     </script>
 </head>
 <body>
     <div class="header">Company Website</div>
     <div class="subheader">Employee Portal</div>
-    
+
     <div class="container contact-container">
         <h2 class="section-header">Contact Management</h2>
-        
+
         <!-- Contact Table -->
         <div class="table-container">
             <table class="contact-table" id="contactTable">
@@ -66,6 +92,7 @@
                         <th>Email</th>
                         <th>Phone</th>
                         <th>Department</th>
+                        <th>Actions</th> <!-- New column -->
                     </tr>
                 </thead>
                 <tbody>
@@ -96,7 +123,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         <!-- Add Contact Form -->
         <div class="contact-form">
             <h3>Add New Contact</h3>
@@ -105,39 +132,39 @@
                     <div class="form-column">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" required>
+                            <input type="text" id="name" name="name" required />
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
+                            <input type="email" id="email" name="email" required />
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="form-row">
                     <div class="form-column">
                         <div class="form-group">
                             <label for="phone">Phone</label>
-                            <input type="tel" id="phone" name="phone" required>
+                            <input type="tel" id="phone" name="phone" required />
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="form-group">
                             <label for="department">Department</label>
-                            <input type="text" id="department" name="department" required>
+                            <input type="text" id="department" name="department" required />
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="action-buttons">
                     <button type="submit" class="submit-btn">Add Contact</button>
                     <button type="reset" class="submit-btn" style="background-color: #666;">Clear</button>
                 </div>
             </form>
         </div>
-        
+
         <div class="nav-back">
             <a href="index.html">← Back to Main Page</a>
         </div>
