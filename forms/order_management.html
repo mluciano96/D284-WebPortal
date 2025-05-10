@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AVGC Order Management</title>
+  <link rel="stylesheet" href="../styles.css" />
+  <script>
+    function addActionButtons(row) {
+      const actionCell = row.insertCell(-1);
+      actionCell.innerHTML = `
+        <button onclick="softDeleteRow(this)">Soft Delete</button>
+        <button onclick="hardDeleteRow(this)">Hard Delete</button>
+      `;
+    }
+
+    function softDeleteRow(button) {
+      const row = button.closest('tr');
+      row.remove();
+    }
+
+    function hardDeleteRow(button) {
+      const password = prompt("Enter credentials to delete this order:");
+      if (password === "1234") {
+        const row = button.closest('tr');
+        row.remove();
+      } else {
+        alert("Incorrect credentials. Deletion cancelled.");
+      }
+    }
+
+    function addOrder(event) {
+      event.preventDefault();
+
+      const orderId = document.getElementById('orderId').value;
+      const department = document.getElementById('department').value;
+      const associate = document.getElementById('associate').value;
+      const sales1 = parseFloat(document.getElementById('sales1').value) || 0;
+      const sales2 = parseFloat(document.getElementById('sales2').value) || 0;
+      const sales3 = parseFloat(document.getElementById('sales3').value) || 0;
+
+      if (!orderId || !department || !associate) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      const forecastSale = sales1 + sales2 + sales3;
+
+      const table = document.getElementById('orderTable').getElementsByTagName('tbody')[0];
+      const newRow = table.insertRow();
+      newRow.insertCell(0).textContent = orderId;
+      newRow.insertCell(1).textContent = department;
+      newRow.insertCell(2).textContent = associate;
+      newRow.insertCell(3).textContent = forecastSale.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      });
+      addActionButtons(newRow);
+
+      document.getElementById('orderForm').reset();
+      alert('Order added successfully!');
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      document.getElementById('orderForm').addEventListener('submit', addOrder);
+
+      const rows = document.querySelectorAll('#orderTable tbody tr');
+      rows.forEach(row => addActionButtons(row));
+    });
+  </script>
+</head>
+<body>
+  <div class="header">American Video Game Company</div>
+  <div class="subheader">Employee Self Service Portal</div>
+
+  <div class="container contact-container">
+    <h2 class="section-header">Order Management</h2>
+
+    <p class="section-description">
+        Description Needed
+    </p>
+
+    <!-- Order Table -->
+    <div class="table-container">
+      <table class="contact-table" id="orderTable">
+        <thead>
+          <tr>
+            <th>Order ID</th>
+            <th>Department</th>
+            <th>Associate</th>
+            <th>Forecast Sale</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample Rows (replace as needed) -->
+          <tr>
+            <td>001</td>
+            <td>Sales</td>
+            <td>John Parker</td>
+            <td>$12,000.00</td>
+          </tr>
+          <tr>
+            <td>002</td>
+            <td>Accounting</td>
+            <td>Ann Wilson</td>
+            <td>$15,800.00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Add Order Form -->
+    <div class="contact-form">
+      <h3>Add New Order</h3>
+      <form id="orderForm">
+        <div class="form-row">
+          <div class="form-column">
+            <div class="form-group">
+              <label for="orderId">Order ID</label>
+              <input type="text" id="orderId" name="orderId" required />
+            </div>
+          </div>
+          <div class="form-column">
+            <div class="form-group">
+              <label for="department">Department</label>
+              <input type="text" id="department" name="department" required />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-column">
+            <div class="form-group">
+              <label for="associate">Associate</label>
+              <input type="text" id="associate" name="associate" required />
+            </div>
+          </div>
+          <div class="form-column">
+            <div class="form-group">
+              <label for="sales1">Sales Figure 1</label>
+              <input type="number" id="sales1" name="sales1" step="0.01" />
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-column">
+            <div class="form-group">
+              <label for="sales2">Sales Figure 2</label>
+              <input type="number" id="sales2" name="sales2" step="0.01" />
+            </div>
+          </div>
+          <div class="form-column">
+            <div class="form-group">
+              <label for="sales3">Sales Figure 3</label>
+              <input type="number" id="sales3" name="sales3" step="0.01" />
+            </div>
+          </div>
+        </div>
+
+        <div class="action-buttons">
+          <button type="submit" class="submit-btn">Add Order</button>
+          <button type="reset" class="submit-btn" style="background-color: #666;">Clear</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="nav-back">
+      <a href="../index.html">← Back to Main Page</a>
+    </div>
+  </div>
+</body>
+</html>
