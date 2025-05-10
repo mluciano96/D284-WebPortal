@@ -81,46 +81,49 @@
     <div class="subheader">Employee Self Service Portal</div>
 
     <div class="container contact-container">
-        <h2 class="section-header">Contact Management</h2>
+        <h2 class="section-header">Contract Management</h2>
         
-        <h4>Hard deletion still under construction. Temporary credentials: "1234".</h4>
+        <p class="section-description">
+            This section allows you to view and manage company contracts. You can add new contacts, and delete existing ones.
+            Please note that hard deletion is currently under construction and requires a password (1234) for confirmation.
+        </p>
 
         <!-- Contact Table -->
         <div class="table-container">
             <table class="contact-table" id="contactTable">
                 <thead>
                     <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Phone</th>
+                        <th>Business</th>
+                        <th>Primary Representative</th>
                         <th>Department</th>
+                        <th>Contract End Date</th>
                         <th>Actions</th> <!-- New column -->
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
+                        <td>Parker Marketing</td>
                         <td>John Parker</td>
-                        <td>John.Parker@company.com</td>
-                        <td>555-555-1234</td>
-                        <td>Sales</td>
+                        <td>Online Marketing</td>
+                        <td>January 10, 2030</td>
                     </tr>
                     <tr>
-                        <td>Ann Wilson</td>
-                        <td>Ann.Wilson@company.com</td>
-                        <td>555-555-1235</td>
-                        <td>Accounting</td>
+                        <td>Ann Vendors</td>
+                        <td>Annabelle Wilson</td>
+                        <td>Retail Partnerships</td>
+                        <td>February 17, 2030</td>
                     </tr>
                     <tr>
+                        <td>Smith Services</td>
                         <td>William Smith</td>
-                        <td>William.Smith@company.com</td>
-                        <td>555-555-1236</td>
-                        <td>Development</td>
+                        <td>Public Reception Consultation</td>
+                        <td>March 11, 2030</td>
                     </tr>
                     <tr>
-                        <td>Carol Davis</td>
-                        <td>Carol.Davis@company.com</td>
-                        <td>555-555-1237</td>
-                        <td>Communications</td>
+                        <td>Carol Corporation</td>
+                        <td>Caroline Davis</td>
+                        <td>International Communications</td>
+                        <td>April 20, 2030</td>
                     </tr>
                 </tbody>
             </table>
@@ -128,18 +131,18 @@
 
         <!-- Add Contact Form -->
         <div class="contact-form">
-            <h3>Add New Contact</h3>
+            <h3>Add New Business Contract</h3>
             <form id="contactForm">
                 <div class="form-row">
                     <div class="form-column">
                         <div class="form-group">
-                            <label for="name">Name</label>
+                            <label for="name">Business</label>
                             <input type="text" id="name" name="name" required />
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="form-group">
-                            <label for="email">Email</label>
+                            <label for="email">Primary Representative</label>
                             <input type="email" id="email" name="email" required />
                         </div>
                     </div>
@@ -148,13 +151,13 @@
                 <div class="form-row">
                     <div class="form-column">
                         <div class="form-group">
-                            <label for="phone">Phone</label>
+                            <label for="phone">Department</label>
                             <input type="tel" id="phone" name="phone" required />
                         </div>
                     </div>
                     <div class="form-column">
                         <div class="form-group">
-                            <label for="department">Department</label>
+                            <label for="department">Contract End Date</label>
                             <input type="text" id="department" name="department" required />
                         </div>
                     </div>
